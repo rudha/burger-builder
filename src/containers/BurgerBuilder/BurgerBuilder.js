@@ -72,6 +72,7 @@ class BurgerBuilder extends Component {
 	}
 
 	purchaseCancelHandler = () => {
+		this.props.onInitPurchase();
 		this.setState({purchasing: false});
 	}
 
@@ -124,9 +125,9 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
 	return {
-		ings: state.ingredients,
-		price: state.totalPrice,
-		error: state.error,
+		ings: state.burgerBuilder.ingredients,
+		price: state.burgerBuilder.totalPrice,
+		error: state.burgerBuilder.error,
 	};
 }
 
@@ -135,6 +136,7 @@ const mapDispatchToProps = dispatch => {
 		onIngredientAdded: (ingName) => dispatch(actionTypes.addIngredient(ingName)),
 		onIngredientRemoved: (ingName) => dispatch(actionTypes.removeIngredient(ingName)),
 		onInitIngredients: () => dispatch(actionTypes.initIngredients()),
+		onInitPurchase: () => dispatch(actionTypes.purchaseInit()),
 	};
 }
 
